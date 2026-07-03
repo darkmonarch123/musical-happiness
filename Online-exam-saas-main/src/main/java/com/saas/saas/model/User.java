@@ -1,13 +1,21 @@
-package com.exam.saas;
+package com.exam.saas.model;
 
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
+import jakarta.persistence.*;
+import lombok.Data;
 
-@SpringBootApplication
-public class SaasApplication {
-
-	public static void main(String[] args) {
-		SpringApplication.run(SaasApplication.class, args);
-	}
-
+@Entity
+@Table(name = "users")
+@Data
+public class User {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    
+    @Column(unique = true, nullable = false)
+    private String username;
+    
+    @Column(nullable = false)
+    private String password;
+    
+    private String role; // ROLE_STUDENT, ROLE_ADMIN
 }
